@@ -61,6 +61,7 @@
 //= require hyrax/dashboard_actions
 //= require hyrax/batch
 //= require hyrax/flot_stats
+//= require hyrax/search_typeahead
 // Provide AMD module support
 //= require almond
 //= require hyrax/admin/admin_set_controls
@@ -68,6 +69,7 @@
 //= require hyrax/admin/admin_set/visibility
 //= require hyrax/editor
 //= require hyrax/editor/admin_set_widget
+//= require hyrax/editor/controlled_vocabulary
 //= require hyrax/admin/graphs
 //= require hyrax/save_work
 //= require hyrax/permissions

@@ -42,7 +42,14 @@ module Hyrax
       # The value for some fields should not be set to the defaults ([''])
       # because it should be an empty array instead
       def initialize_field(key)
-        super unless [:embargo_release_date, :lease_expiration_date].include?(key)
+        return if [:embargo_release_date, :lease_expiration_date].include?(key)
+
+        if class_name = model_class.properties[key.to_s].try(:class_name)
+          # Initialize linked properties such as based_near
+          self[key] += [class_name.new]
+        else
+          super
+        end
       end
 
       def [](key)

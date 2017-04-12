@@ -14,6 +14,8 @@ export default class Autocomplete {
           data.id
         )
         break
+      case 'based_near':
+        new LinkedData(element, data.autocompleteUrl)
       default:
         new Default(element, data.autocompleteUrl)
         break
