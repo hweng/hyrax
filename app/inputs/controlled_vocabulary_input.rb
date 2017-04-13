@@ -1,14 +1,19 @@
 # frozen_string_literal: true
 
 class ControlledVocabularyInput < MultiValueInput
+  # Overriding so that the class is correct and the javascript for will work on this.
+  # See https://github.com/projecthydra/hydra-editor/blob/4da9c0ea542f7fde512a306ec3cc90380691138b/app/assets/javascripts/hydra-editor/field_manager.es6#L61
+  def input_type
+    'multi_value'.freeze
+  end
 
-  protected
+  private
 
     def build_field(value, index)
       options = input_html_options.dup
       value = value.resource if value.is_a? ActiveFedora::Base
 
-      build_options(value, index, options) if value.respond_to? :rdf_label
+      build_options(value, index, options) if value.respond_to?(:rdf_label)
       options[:required] = nil if @rendered_first_element
       options[:class] ||= []
       options[:class] += ["#{input_dom_id} form-control multi-text-field"]
